@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Dapper;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -33,16 +34,19 @@ namespace server.Core.Utils
 
         public static async Task Add<T>(string tablename, T value)
         {
-            var properties = string.Join(",", MetaReader.GetProperties<T>());
-            var values = string.Join(",", MetaReader.GetValues<T>(value)) ;
-            var command = $"INSERT INTO {tablename} VALUES ({properties}) ({values});";
             using (var conn = await GetConnection())
             {
-                await using (var cmd = new NpgsqlCommand(command, conn))
-                {
-                    _ = await cmd.ExecuteReaderAsync();
-                }
+                var query = GetQuery<T>(tablename);
+                _ = await conn.ExecuteScalarAsync<T>(query, value);
             }
+        }
+
+        private static string GetQuery<T>(string tablename)
+        {
+            var props = string.Join(",", MetaReader.GetProps<T>());
+            var tags = string.Join(",", MetaReader.GetTags<T>());
+            var command = $"INSERT INTO {tablename} ({props}) VALUES ({tags});";
+            return command;
         }
 
         public static async Task<List<T>> Load<T>(string command)
@@ -57,7 +61,7 @@ namespace server.Core.Utils
                         while (await reader.ReadAsync())
                         {
                             var item = Activator.CreateInstance<T>();
-                            foreach (var prop in MetaReader.GetProperties<T>())
+                            foreach (var prop in MetaReader.GetProps<T>())
                             {
                                 MetaReader.SetPropety(item, prop, reader[prop]);
                             }

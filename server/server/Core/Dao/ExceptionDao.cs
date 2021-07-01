@@ -8,7 +8,7 @@ namespace server.Core.Dao
 {
     public class ExceptionDao
     {
-        public async Task<List<ExceptionInfo>> Select()
+        public async Task<List<ExceptionInfo>> List()
         {
             return await DataAccess.Load<ExceptionInfo>("SELECT * FROM TEXCEPTION;");
         }

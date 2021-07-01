@@ -8,10 +8,14 @@ namespace server.Core
     public class ActivityService
     {
         private ActivityDao Dao { get; set; } = new ActivityDao();
-        public async Task<List<Activity>> Load()
+        public async Task<List<Activity>> List()
         {
-            return await this.Dao.Select();
+            return await this.Dao.List();
+        }
 
+        public async Task Add(Activity activity)
+        {
+            await this.Dao.Add(activity);
         }
     }
 }

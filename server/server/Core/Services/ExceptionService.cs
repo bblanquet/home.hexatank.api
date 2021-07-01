@@ -8,9 +8,9 @@ namespace server.Core.Services
     public class ExceptionService
     {
         private ExceptionDao Dao { get; set; } = new ExceptionDao();
-        public async Task<List<ExceptionInfo>> Load()
+        public async Task<List<ExceptionInfo>> List()
         {
-            return await this.Dao.Select();
+            return await this.Dao.List();
         }
 
         public async Task Add(ExceptionInfo exception)

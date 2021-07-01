@@ -34,13 +34,13 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/Activity",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/Activity/List",
       "environmentVariables": {
-        "HOST": "",
-        "PORT": "",
-        "USERNAME": "",
-        "PASSWORD": "",
-        "DATABASE": ""
+        "HOST": "host.docker.internal",
+        "PORT": "5432",
+        "USERNAME": "customer",
+        "PASSWORD": "customer",
+        "DATABASE": "program6"
       },
       "publishAllPorts": true
     }
