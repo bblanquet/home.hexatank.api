@@ -34,22 +34,25 @@ namespace server.Core.Utils
         public static async Task<List<T>> Load<T>(string command)
         {
             var result = new List<T>();
-            var conn = await GetConnection();
-            await using (var cmd = new NpgsqlCommand(command, conn))
+            using(var conn = await GetConnection())
             {
-                await using (var reader = await cmd.ExecuteReaderAsync())
+                await using (var cmd = new NpgsqlCommand(command, conn))
                 {
-                    while (await reader.ReadAsync())
+                    await using (var reader = await cmd.ExecuteReaderAsync())
                     {
-                        var item = Activator.CreateInstance<T>();
-                        foreach(var prop in MetaReader.GetProperties<T>())
+                        while (await reader.ReadAsync())
                         {
-                            MetaReader.SetPropety(item, prop, reader[prop]);
+                            var item = Activator.CreateInstance<T>();
+                            foreach (var prop in MetaReader.GetProperties<T>())
+                            {
+                                MetaReader.SetPropety(item, prop, reader[prop]);
+                            }
+                            result.Add(item);
                         }
-                        result.Add(item);
                     }
                 }
             }
+
             return result;
         }
     }
