@@ -31,6 +31,20 @@ namespace server.Core.Utils
             return Connection;
         }
 
+        public static async Task Add<T>(string tablename, T value)
+        {
+            var properties = string.Join(",", MetaReader.GetProperties<T>());
+            var values = string.Join(",", MetaReader.GetValues<T>(value)) ;
+            var command = $"INSERT INTO {tablename} VALUES ({properties}) ({values});";
+            using (var conn = await GetConnection())
+            {
+                await using (var cmd = new NpgsqlCommand(command, conn))
+                {
+                    _ = await cmd.ExecuteReaderAsync();
+                }
+            }
+        }
+
         public static async Task<List<T>> Load<T>(string command)
         {
             var result = new List<T>();
@@ -52,7 +66,6 @@ namespace server.Core.Utils
                     }
                 }
             }
-
             return result;
         }
     }

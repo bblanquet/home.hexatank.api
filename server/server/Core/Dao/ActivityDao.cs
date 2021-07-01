@@ -10,17 +10,7 @@ namespace server.Dao
     {
         public async Task<List<Activity>> Select()
         {
-            var result = new List<Activity>();
-            try
-            {
-                result = await DataAccess.Load<Activity>("SELECT * FROM TACTIVITY;");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                Console.WriteLine(e.StackTrace);
-            }
-            return result;
+            return await DataAccess.Load<Activity>("SELECT * FROM TACTIVITY;");
 
         }
     }

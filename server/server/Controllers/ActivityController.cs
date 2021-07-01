@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using server.Core;
+using server.Core.Dao;
 using server.Core.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace server.Controllers
@@ -14,11 +16,7 @@ namespace server.Controllers
         [HttpGet]
         public async Task<List<Activity>> Get()
         {
-            Console.WriteLine("IN");
-            var activityService = new ActivityService();
-            var result = await activityService.Load();
-            Console.WriteLine("OUT");
-            return result;
+            return new DataContext().Activities.ToList();
         }
     }
 }
