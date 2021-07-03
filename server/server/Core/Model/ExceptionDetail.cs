@@ -2,7 +2,7 @@
 
 namespace server.Core.Model
 {
-    public class ExceptionInfo
+    public class ExceptionDetail
     {
         public DateTime Date { get; set; }
         public string Name { get; set; }

@@ -12,14 +12,14 @@ namespace server.Controllers
     {
         [HttpGet]
         [Route("List")]
-        public async Task<List<ExceptionInfo>> List()
+        public async Task<List<ExceptionDetail>> List()
         {
             return await new ExceptionService().List();
         }
 
         [HttpPost]
         [Route("Add")]
-        public async Task Add([FromBody] ExceptionInfo exception)
+        public async Task Add([FromBody] ExceptionDetail exception)
         {
             await new ExceptionService().Add(exception);
         }

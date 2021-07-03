@@ -8,14 +8,14 @@ namespace server.Core.Dao
 {
     public class ExceptionDao
     {
-        public async Task<List<ExceptionInfo>> List()
+        public async Task<List<ExceptionDetail>> List()
         {
-            return await DataAccess.Load<ExceptionInfo>("SELECT * FROM TEXCEPTION;");
+            return await DataAccess.Load<ExceptionDetail>("SELECT * FROM TEXCEPTION;");
         }
 
-        internal async Task Add(ExceptionInfo exception)
+        internal async Task Add(ExceptionDetail exception)
         {
-            await DataAccess.Add<ExceptionInfo>("TEXCEPTION", exception);
+            await DataAccess.Add<ExceptionDetail>("TEXCEPTION", exception);
         }
     }
 }

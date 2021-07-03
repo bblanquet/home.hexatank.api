@@ -8,12 +8,12 @@ namespace server.Core.Services
     public class ExceptionService
     {
         private ExceptionDao Dao { get; set; } = new ExceptionDao();
-        public async Task<List<ExceptionInfo>> List()
+        public async Task<List<ExceptionDetail>> List()
         {
             return await this.Dao.List();
         }
 
-        public async Task Add(ExceptionInfo exception)
+        public async Task Add(ExceptionDetail exception)
         {
             await this.Dao.Add(exception);
         }
