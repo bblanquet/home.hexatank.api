@@ -12,10 +12,9 @@ namespace server.Core.Utils
         private static async Task Connecting()
         {
             var connString = DataAccessConnection.New().GetConnectionString();
-            Console.WriteLine($"CONNECTING {connString}");
             Connection = new NpgsqlConnection(connString);
             await Connection.OpenAsync();
-            Console.WriteLine($"CONNECTED {connString}");
+            Console.WriteLine($"CONNECTED");
         }
 
         private static bool HasConnection()

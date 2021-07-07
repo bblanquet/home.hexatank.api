@@ -19,7 +19,7 @@ namespace server.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task Add([FromBody] Activity activity)
+        public async Task Add(Activity activity)
         {
             await new ActivityService().Add(activity);
         }
