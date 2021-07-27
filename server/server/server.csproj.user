@@ -2,11 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ActiveDebugProfile>Docker</ActiveDebugProfile>
-    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
-    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
   <PropertyGroup>
     <InvariantGlobalization>true</InvariantGlobalization>

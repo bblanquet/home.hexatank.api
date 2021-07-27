@@ -6,6 +6,10 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AspNetCoreRateLimit" Version="4.0.1" />
     <PackageReference Include="AspNetCoreRateLimit.Redis" Version="1.0.0" />
