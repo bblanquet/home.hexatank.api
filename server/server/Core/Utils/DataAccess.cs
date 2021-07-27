@@ -14,7 +14,6 @@ namespace server.Core.Utils
             var connString = DataAccessConnection.New().GetConnectionString();
             Connection = new NpgsqlConnection(connString);
             await Connection.OpenAsync();
-            Console.WriteLine($"CONNECTED");
         }
 
         private static bool HasConnection()
