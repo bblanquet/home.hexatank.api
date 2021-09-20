@@ -1,0 +1,48 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:62062",
+      "sslPort": 0
+    }
+  },
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "Activity",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "HOST": "localhost",
+        "PORT": "5432",
+        "USERNAME": "customer",
+        "PASSWORD": "customer",
+        "DATABASE": "program6"
+      }
+    },
+    "server": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:5000"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "environmentVariables": {
+        "HOST": "host.docker.internal",
+        "PORT": "5432",
+        "USERNAME": "customer",
+        "PASSWORD": "customer",
+        "DATABASE": "program6"
+      },
+      "publishAllPorts": true
+    }
+  }
+}
