@@ -2,7 +2,7 @@
 
 namespace Bob.Program6.Api.Core.Model
 {
-    public class SmExceptionDetail
+    public class LightErrorDetails
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }

@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Security.Core
 {
-    public class TokenRetriever: ITokenRetriever
+    public class TokenRetriever : ITokenRetriever
     {
         public string GetToken(string authorizationHeader)
         {

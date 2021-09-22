@@ -2,11 +2,10 @@
 using Npgsql;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Dao.Core
 {
     public static class DataAccessHelper
     {
@@ -27,11 +26,11 @@ namespace Bob.Program6.Api.Core.Utils
             }
         }
 
-        internal static async Task Update<T>(this IDataAccess val, string tablename, T value, Expression<Func<T, string>> where)
+        public static async Task Update<T>(this IDataAccess val, string tablename, T value, Expression<Func<T, string>> where)
         {
             using (var conn = await val.GetConnection())
             {
-                var command = GetUpdateQuery<T>(tablename, where);
+                var command = GetUpdateQuery(tablename, where);
                 await conn.ExecuteScalarAsync<T>(command, value);
             }
         }
@@ -97,7 +96,7 @@ namespace Bob.Program6.Api.Core.Utils
         private static string GetUpdateQuery<T>(string tablename, Expression<Func<T, string>> v)
         {
             var wherePropName = MetaReader.GetMemberName(v);
-            return $"UPDATE {tablename} SET {String.Join(",", MetaReader.GetPropsAndTags<T>())} WHERE {wherePropName} = @{wherePropName}";
+            return $"UPDATE {tablename} SET {string.Join(",", MetaReader.GetPropsAndTags<T>())} WHERE {wherePropName} = @{wherePropName}";
         }
     }
 }

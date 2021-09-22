@@ -12,5 +12,12 @@ namespace Bob.Program6.Api.Core.Model
         public int Green { get; set; }
         public int Blue { get; set; }
         public int Red { get; set; }
+        public void Update(Player player)
+        {
+            this.Green = player.Green;
+            this.Red = player.Red;
+            this.Blue = player.Blue;
+            this.Score = player.Score;
+        }
     }
 }

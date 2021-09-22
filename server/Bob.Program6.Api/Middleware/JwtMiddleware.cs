@@ -1,39 +1,37 @@
 ﻿using Bob.Program6.Api.Core.Model;
 using Bob.Program6.Api.Core.Services;
+using Bob.Program6.Security.Core;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Options;
 using System.Linq;
 using System.Threading.Tasks;
 
-
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Api.Middleware
 {
     public class JwtMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly AppSettings _appsettings;
 
-        public JwtMiddleware(RequestDelegate next, IOptions<AppSettings> options)
+        public JwtMiddleware(RequestDelegate next)
         {
             _next = next;
-            _appsettings = options.Value;
         }
 
-        public async Task InvokeAsync(HttpContext context, 
+        public async Task InvokeAsync(HttpContext context,
             ITokenRetriever tokenRtr,
-            IPlayerService playerSvc, 
+            IPlayerService playerSvc,
             ITokenManager tokenMgr)
         {
             var authorizationHeader = context.Request.Headers["Authorization"].FirstOrDefault();
             var token = tokenRtr.GetToken(authorizationHeader);
-            if (token != null) {
+            if (token != null)
+            {
                 try
                 {
                     if (tokenMgr.IsValid(token))
                     {
                         var jwtToken = tokenMgr.GetStatus(token);
                         var playerName = jwtToken.Claims.First(x => x.Type == nameof(Player.Name)).Value;
-                        context.Items[nameof(Player)] = (await playerSvc.GetByName(playerName));
+                        context.Items[nameof(Player)] = await playerSvc.GetByName(playerName);
                     }
                 }
                 catch

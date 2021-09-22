@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bob.Program6.Api\Bob.Program6.Api.csproj" />
+    <ProjectReference Include="..\Bob.Program6.Security\Bob.Program6.Security.csproj" />
   </ItemGroup>
 
 </Project>

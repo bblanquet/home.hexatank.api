@@ -1,7 +1,6 @@
-﻿
-using System;
+﻿using System;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Dao.Core
 {
     public struct DataAccessConnection
     {
@@ -10,10 +9,10 @@ namespace Bob.Program6.Api.Core.Utils
         public string Username { get; set; }
         public string Password { get; set; }
         public string Database { get; set; }
- 
+
         public string GetConnectionString()
         {
-            return $"Host={this.Host};Port={this.Port};Username={this.Username};Password={this.Password};Database={this.Database}";
+            return $"Host={Host};Port={Port};Username={Username};Password={Password};Database={Database}";
         }
         public static DataAccessConnection New()
         {

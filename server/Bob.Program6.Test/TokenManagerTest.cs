@@ -1,9 +1,7 @@
-using Bob.Program6.Api.Core.Utils;
-using Moq;
 using NUnit.Framework;
 using System;
 using System.Security.Claims;
-using Microsoft.Extensions.Options;
+using Bob.Program6.Security.Core;
 
 namespace Bob.Program6.Test
 {
@@ -13,20 +11,8 @@ namespace Bob.Program6.Test
         private TokenManager _BTokenProvider;
         [SetUp]
         public void Setup() {
-            var Amock = new Mock<IOptions<AppSettings>>();
-            Amock.SetupGet(a=>a.Value).Returns(new AppSettings
-            {
-                Secret = "this is a test, so don't be mad. this is a test, so don't be mad. this is a test, so don't be mad."
-            });
-
-            var Bmock = new Mock<IOptions<AppSettings>>();
-            Bmock.SetupGet(a => a.Value).Returns(new AppSettings
-            {
-                Secret = "this is a test, so don't be mad #2. this is a test, so don't be mad #2. this is a test, so don't be mad #2."
-            });
-
-            this._ATokenProvider = new TokenManager(Amock.Object);
-            this._BTokenProvider = new TokenManager(Bmock.Object);
+            this._ATokenProvider = new TokenManager("this is a test, so don't be mad. this is a test, so don't be mad. this is a test, so don't be mad.");
+            this._BTokenProvider = new TokenManager("this is a test, so don't be mad #2. this is a test, so don't be mad #2. this is a test, so don't be mad #2.");
         }
 
         [Test]

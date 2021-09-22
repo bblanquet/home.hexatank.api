@@ -1,5 +1,7 @@
 ﻿using Bob.Program6.Api.Core.Model;
-using Bob.Program6.Api.Core.Utils;
+using Bob.Program6.Dao.Core;
+using Bob.Program6.Security.Core;
+using Bob.Program6.Security.Core.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,9 +41,8 @@ namespace Bob.Program6.Api.Core.Dao
             return await this._dataAccess.LoadAll<Player>("player");
         }
 
-        public async Task Update(Player player, int score)
+        public async Task Update(Player player)
         {
-            player.Score = score;
             await this._dataAccess.Update<Player>("player",player, p=>p.Name);
         }
 

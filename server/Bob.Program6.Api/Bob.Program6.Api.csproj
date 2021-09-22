@@ -15,12 +15,15 @@
   <ItemGroup>
     <PackageReference Include="AspNetCoreRateLimit" Version="4.0.1" />
     <PackageReference Include="AspNetCoreRateLimit.Redis" Version="1.0.0" />
-    <PackageReference Include="Dapper" Version="2.0.90" />
     <PackageReference Include="Icu4c.Win.Full.Bin" Version="59.1.15" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.14" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bob.Program6.Dao\Bob.Program6.Dao.csproj" />
+    <ProjectReference Include="..\Bob.Program6.Security\Bob.Program6.Security.csproj" />
   </ItemGroup>
 
 

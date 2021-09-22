@@ -1,15 +1,12 @@
 ﻿using Bob.Program6.Api.Core.Dao;
 using Bob.Program6.Api.Core.Model;
-using Bob.Program6.Api.Core.Utils;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bob.Program6.Security.Core.Model;
+using Bob.Program6.Security.Core;
 
 namespace Bob.Program6.Api.Core.Services
 {
@@ -49,7 +46,7 @@ namespace Bob.Program6.Api.Core.Services
                 return null;
             }
             var token = this.GenerateToken(user);
-            return new AuthenticateResponse(user, token);
+            return new AuthenticateResponse(user.Name, token);
         }
 
         private string GenerateToken(Player user)
@@ -76,9 +73,9 @@ namespace Bob.Program6.Api.Core.Services
                 }).ToList();
         }
 
-        public async Task Update(Player user, int score)
+        public async Task Update(Player user)
         {
-            await this._playerDao.Update(user, score);
+            await this._playerDao.Update(user);
         }
 
         public async Task<int> GetRank(string name)

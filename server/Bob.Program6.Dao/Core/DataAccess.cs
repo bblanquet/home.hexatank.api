@@ -1,11 +1,11 @@
 ﻿using Npgsql;
 using System.Threading.Tasks;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Dao.Core
 {
     public class DataAccess : IDataAccess
     {
-        private  NpgsqlConnection Connection;
+        private NpgsqlConnection Connection;
         public async Task Connecting()
         {
             var connString = DataAccessConnection.New().GetConnectionString();

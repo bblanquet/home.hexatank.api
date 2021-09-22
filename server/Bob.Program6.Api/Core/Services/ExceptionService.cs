@@ -14,17 +14,17 @@ namespace Bob.Program6.Api.Core.Services
             _dao = dao;
         }
 
-        public async Task<List<SmExceptionDetail>> List()
+        public async Task<List<LightErrorDetails>> List()
         {
             return await this._dao.List();
         }
 
-        public async Task<ExceptionDetail> Get(int id)
+        public async Task<ErrorDetails> Get(int id)
         {
             return await this._dao.Get(id);
         }
 
-        public async Task Add(ExceptionDetail exception)
+        public async Task Add(ErrorDetails exception)
         {
             exception.Date = System.DateTime.Now;
             await this._dao.Add(exception);

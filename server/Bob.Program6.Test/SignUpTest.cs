@@ -1,5 +1,5 @@
-﻿using Bob.Program6.Api.Core.Model;
-using Bob.Program6.Api.Core.Utils;
+﻿using Bob.Program6.Security.Core;
+using Bob.Program6.Security.Core.Model;
 using NUnit.Framework;
 
 namespace Bob.Program6.Test

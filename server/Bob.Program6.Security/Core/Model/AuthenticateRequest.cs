@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bob.Program6.Api.Core.Model
+namespace Bob.Program6.Security.Core.Model
 {
     public class AuthenticateRequest
     {

@@ -1,7 +1,7 @@
 ﻿using Npgsql;
 using System.Threading.Tasks;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Dao.Core
 {
     public interface IDataAccess
     {

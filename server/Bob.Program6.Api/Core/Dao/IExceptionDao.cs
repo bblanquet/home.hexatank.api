@@ -8,8 +8,8 @@ namespace Bob.Program6.Api.Core.Dao
 {
     public interface IExceptionDao
     {
-        Task<List<SmExceptionDetail>> List();
-        Task<ExceptionDetail> Get(int id);
-        Task Add(ExceptionDetail exception);
+        Task<List<LightErrorDetails>> List();
+        Task<ErrorDetails> Get(int id);
+        Task Add(ErrorDetails exception);
     }
 }

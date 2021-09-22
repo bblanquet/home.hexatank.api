@@ -1,6 +1,6 @@
 ﻿using Bob.Program6.Api.Core.Dao;
 using Bob.Program6.Api.Core.Model;
-using Bob.Program6.Api.Core.Utils;
+using Bob.Program6.Dao.Core;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

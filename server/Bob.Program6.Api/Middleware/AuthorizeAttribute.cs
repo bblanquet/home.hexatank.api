@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Api.Middleware
 {
-    [AttributeUsage(AttributeTargets.Class| AttributeTargets.Method)]
-    public class AuthorizeAttribute:Attribute, IAuthorizationFilter
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
         public void OnAuthorization(AuthorizationFilterContext context)
         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Bob.Program6.Api.Core
+namespace Bob.Program6.Dao.Core
 {
     public static class MetaReader
     {
@@ -14,13 +14,16 @@ namespace Bob.Program6.Api.Core
             {
                 throw new InvalidCastException($"wrong property types {value.GetType().FullName} {property.PropertyType.FullName}");
             }
-            if (property.PropertyType.IsEnum) {
+            if (property.PropertyType.IsEnum)
+            {
                 property.SetValue(obj, Enum.Parse(property.PropertyType, (string)value));
             }
-            else {
+            else
+            {
                 property.SetValue(obj, value);
             }
         }
+
         public static List<string> GetProps<T>()
         {
             var result = new List<string>();
@@ -46,24 +49,17 @@ namespace Bob.Program6.Api.Core
             var result = new List<string>();
             foreach (var property in typeof(T).GetProperties())
             {
-                if (property.Name != "Id") { 
+                if (property.Name != "Id")
+                {
                     result.Add($"{property.Name} = @{property.Name}");
                 }
             }
             return result;
         }
 
-        public static string GetMemberName(Expression expression)
+        public static string GetMemberName<TClass, TField>(Expression<Func<TClass, TField>> exp)
         {
-            switch (expression.NodeType)
-            {
-                case ExpressionType.MemberAccess:
-                    return ((MemberExpression)expression).Member.Name;
-                case ExpressionType.Convert:
-                    return GetMemberName(((UnaryExpression)expression).Operand);
-                default:
-                    throw new NotSupportedException(expression.NodeType.ToString());
-            }
+            return (exp.Body as MemberExpression ?? ((UnaryExpression)exp.Body).Operand as MemberExpression).Member.Name;
         }
 
     }

@@ -1,7 +1,7 @@
-﻿using Bob.Program6.Api.Core.Model;
+﻿using Bob.Program6.Security.Core.Model;
 using System.Text.RegularExpressions;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Security.Core
 {
     public static class AuthenticateRequestHelper
     {
@@ -11,8 +11,10 @@ namespace Bob.Program6.Api.Core.Utils
             return IsTextOk(val.Name) && IsTextOk(val.Password);
         }
 
-        private static bool IsTextOk(string val) {
-            if (!IsNotNull(val)) {
+        private static bool IsTextOk(string val)
+        {
+            if (!IsNotNull(val))
+            {
                 return false;
             }
             if (!IsContentOk(val))
@@ -23,20 +25,23 @@ namespace Bob.Program6.Api.Core.Utils
             {
                 return false;
             }
-            return  true;
+            return true;
         }
 
-	    private static bool IsSizeOk(string str) {
-		    return 3 <= str.Length && str.Length <= 15;
-	    }
-
-        private static bool IsNotNull(string str) {
-	        return str != null;
+        private static bool IsSizeOk(string str)
+        {
+            return 3 <= str.Length && str.Length <= 15;
         }
 
-        private static bool IsContentOk(string str) {
+        private static bool IsNotNull(string str)
+        {
+            return str != null;
+        }
+
+        private static bool IsContentOk(string str)
+        {
             var isOk = new Regex("^[A-Za-z0-9 ]+$");
-	        return isOk.IsMatch(str);
+            return isOk.IsMatch(str);
         }
     }
 }

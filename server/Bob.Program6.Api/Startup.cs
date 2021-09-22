@@ -4,6 +4,9 @@ using Bob.Program6.Api.Core.Dao;
 using Bob.Program6.Api.Core.Services;
 using Bob.Program6.Api.Core.Utils;
 using Bob.Program6.Api.Dao;
+using Bob.Program6.Api.Middleware;
+using Bob.Program6.Dao.Core;
+using Bob.Program6.Security.Core;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -53,8 +56,6 @@ namespace Bob.Program6.Api
             // inject counter and rules stores
             services.AddInMemoryRateLimiting();
 
-            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
-
             // Add framework services.
             services.AddMvc();
 
@@ -65,8 +66,8 @@ namespace Bob.Program6.Api
 
             services.AddCors(options =>
             {
-                options.AddPolicy(name: customOrigins, builder => { 
-                    builder.SetIsOriginAllowed("",);
+                options.AddPolicy(name: customOrigins, builder => {
+                    builder.WithOrigins("http://localhost:8080");
                     builder.AllowAnyHeader();
                     builder.AllowAnyMethod();
                 });

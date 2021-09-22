@@ -19,7 +19,8 @@
         "PORT": "5432",
         "USERNAME": "customer",
         "PASSWORD": "customer",
-        "DATABASE": "program6"
+        "DATABASE": "program6",
+        "KEY": "hSTjhscC275lMiNx6OSXhSTjhscC275lMiNx6OSX"
       }
     },
     "server": {
@@ -40,7 +41,9 @@
         "PORT": "5432",
         "USERNAME": "customer",
         "PASSWORD": "customer",
-        "DATABASE": "program6"
+        "DATABASE": "program6",
+        "KEY": "hSTjhscC275lMiNx6OSXhSTjhscC275lMiNx6OSX"
+
       },
       "publishAllPorts": true
     }

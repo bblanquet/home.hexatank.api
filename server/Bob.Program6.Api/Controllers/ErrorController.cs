@@ -9,18 +9,19 @@ namespace Bob.Program6.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ExceptionController
+    public class ErrorController
+        : ControllerBase
     {
         private IExceptionService _exceptionService;
 
-        public ExceptionController(IExceptionService exceptionService)
+        public ErrorController(IExceptionService exceptionService)
         {
             _exceptionService = exceptionService;
         }
 
         [HttpGet]
         [Route("List")]
-        public async Task<List<SmExceptionDetail>> List()
+        public async Task<List<LightErrorDetails>> List()
         {
             Logger.Log(LogKind.Info, "EXP LIST");
             return await this._exceptionService.List();
@@ -28,7 +29,7 @@ namespace Bob.Program6.Api.Controllers
 
         [HttpGet]
         [Route("Get")]
-        public async Task<ExceptionDetail> Get(int id)
+        public async Task<ErrorDetails> Get(int id)
         {
             Logger.Log(LogKind.Info, "EXP GET");
             return await this._exceptionService.Get(id);
@@ -36,7 +37,7 @@ namespace Bob.Program6.Api.Controllers
 
         [HttpPost]
         [Route("Add")]
-        public async Task Add(ExceptionDetail exception)
+        public async Task Add(ErrorDetails exception)
         {
             Logger.Log(LogKind.Info, "EXP ADD");
             await this._exceptionService.Add(exception);

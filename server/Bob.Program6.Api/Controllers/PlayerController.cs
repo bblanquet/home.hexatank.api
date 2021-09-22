@@ -2,7 +2,7 @@
 
 using Bob.Program6.Api.Core.Model;
 using Bob.Program6.Api.Core.Services;
-using Bob.Program6.Api.Core.Utils;
+using Bob.Program6.Api.Middleware;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -13,52 +13,10 @@ namespace Bob.Program6.Api.Controllers
     public class PlayerController : ControllerBase
     {
         private IPlayerService _playerService;
-        private ITokenManager _tokenManager;
 
-        public PlayerController(IPlayerService userService, ITokenManager tokenManager)
+        public PlayerController(IPlayerService userService)
         {
             _playerService = userService;
-            _tokenManager = tokenManager;
-        }
-
-        [Route("signIn")]
-        [HttpPost]
-        public async Task<IActionResult> SignIn(AuthenticateRequest request)
-        {
-            if (!request.IsValid()) {
-                return BadRequest(new { message = AuthenticateRequestHelper.Error });
-            }
-
-            var response = await this._playerService.SignIn(request);
-            if (response == null)
-            {
-                return BadRequest(new { message = "Username or password is incorrect" });
-            }
-            return Ok(response);
-        }
-
-
-        [Route("signUp")]
-        [HttpPost]
-        public async Task<IActionResult> SignUp(AuthenticateRequest request) {
-            if (!request.IsValid())
-            {
-                return BadRequest(new { message = AuthenticateRequestHelper.Error });
-            }
-
-            var response = await this._playerService.SignUp(request);
-            if(response == null)
-            {
-                return BadRequest(new { message = "Username is already used" });
-            }
-            return Ok(response);
-        }
-
-        [Route("isValid")]
-        [HttpGet]
-        public IActionResult IsValid(string token)
-        {
-            return Ok(this._tokenManager.IsValid(token));
         }
 
         [Route("details")]
@@ -83,12 +41,14 @@ namespace Bob.Program6.Api.Controllers
         [Route("update")]
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Update(int score)
+        public async Task<IActionResult> Update(Player player)
         {
-            var user = HttpContext.Items[typeof(Player).Name];
-            await this._playerService.Update((Player)user, score);
+            var user = (Player)HttpContext.Items[typeof(Player).Name];
+            user.Update(player);
+            await this._playerService.Update(user);
             return Ok();
         }
+
 
 
         [Route("top100")]

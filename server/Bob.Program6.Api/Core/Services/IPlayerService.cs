@@ -1,4 +1,5 @@
 ﻿using Bob.Program6.Api.Core.Model;
+using Bob.Program6.Security.Core.Model;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Bob.Program6.Api.Core.Services
         Task<AuthenticateResponse> SignIn(AuthenticateRequest request);
         Task<Player> GetByName(string name);
         Task<List<PlayerInfo>> Get100Players();
-        Task Update(Player user, int score);
+        Task Update(Player user);
         Task<int> GetRank(string name);
     }
 }

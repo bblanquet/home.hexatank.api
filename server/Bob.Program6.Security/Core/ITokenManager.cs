@@ -1,9 +1,8 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Security.Core
 {
     public interface ITokenManager
     {

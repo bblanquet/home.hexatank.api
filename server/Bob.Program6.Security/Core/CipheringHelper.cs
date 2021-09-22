@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Bob.Program6.Api.Core.Utils
+namespace Bob.Program6.Security.Core
 {
     public static class CipheringHelper
     {
