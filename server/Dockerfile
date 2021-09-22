@@ -6,14 +6,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["Bob.Program6.Api.csproj", "."]
-RUN dotnet restore "Bob.Program6.Api.csproj"
+COPY [".", "."]
+RUN dotnet restore
 COPY . .
 WORKDIR /src
-RUN dotnet build "Bob.Program6.Api.csproj" -c Release -o /app/build
+RUN dotnet build -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Bob.Program6.Api.csproj" -c Release -o /app/publish
+RUN dotnet publish -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
