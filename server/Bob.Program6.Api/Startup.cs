@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Bob.Program6.Api
 {
@@ -96,7 +97,7 @@ namespace Bob.Program6.Api
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "program6 API V1");
+                c.SwaggerEndpoint($"{Environment.GetEnvironmentVariable("SUBPATH")}/swagger/v1/swagger.json", "program6 API V1");
             });
 
 
